@@ -1,0 +1,1107 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>洋基喵客鬆 2nd 冒險探索篇🌲🔍 ｜ 課程用文字（可一鍵複製）</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#111a33;
+      --card2:#0f1730;
+      --text:#e8ecff;
+      --muted:#aab3d6;
+      --line:#273055;
+      --accent:#7aa2ff;
+      --ok:#44d19d;
+      --warn:#ffd36a;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans TC", Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 20% -10%, #1c2a66 0%, transparent 55%),
+                  radial-gradient(900px 700px at 110% 10%, #2b1e63 0%, transparent 50%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    header{
+      padding:28px 18px 10px;
+      max-width:1100px;
+      margin:0 auto;
+    }
+    h1{
+      margin:0 0 6px;
+      font-size:22px;
+      letter-spacing:.2px;
+    }
+    .sub{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .toolbar{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin:14px 0 10px;
+    }
+    .search{
+      flex:1 1 260px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:12px;
+      padding:10px 12px;
+    }
+    .search input{
+      width:100%;
+      border:0;
+      outline:0;
+      background:transparent;
+      color:var(--text);
+      font-size:14px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      color:var(--muted);
+      font-size:13px;
+      user-select:none;
+    }
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 18px 32px;
+    }
+    details{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      margin:12px 0;
+      overflow:hidden;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      padding:14px 14px;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    summary::-webkit-details-marker{display:none}
+    .pageTag{
+      flex:0 0 auto;
+      font-weight:700;
+      color:#0b1020;
+      background:linear-gradient(135deg, var(--accent), #a5baff);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      margin-top:1px;
+    }
+    .sumText{
+      flex:1 1 auto;
+      min-width:0;
+    }
+    .title{
+      font-weight:700;
+      font-size:15px;
+      margin:0 0 2px;
+    }
+    .hint{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .content{
+      padding:0 14px 14px;
+      border-top:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.10);
+    }
+    .copyBlock{
+      margin:12px 0;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:14px;
+      background:linear-gradient(180deg, rgba(17,26,51,.85), rgba(15,23,48,.85));
+      overflow:hidden;
+    }
+    .copyTop{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .label{
+      color:var(--muted);
+      font-size:12px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+    button.copyBtn{
+      flex:0 0 auto;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      padding:7px 10px;
+      border-radius:10px;
+      font-size:12px;
+      cursor:pointer;
+      transition:.15s ease;
+    }
+    button.copyBtn:hover{background:rgba(255,255,255,.10)}
+    button.copyBtn:active{transform:translateY(1px)}
+    pre{
+      margin:0;
+      padding:12px;
+      white-space:pre-wrap;
+      word-break:break-word;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:13px;
+      color:var(--text);
+    }
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:18px;
+      transform:translateX(-50%);
+      background:rgba(0,0,0,.70);
+      border:1px solid rgba(255,255,255,.14);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      font-size:13px;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .18s ease, transform .18s ease;
+    }
+    .toast.show{
+      opacity:1;
+      transform:translateX(-50%) translateY(-4px);
+    }
+    .mutedSmall{color:var(--muted); font-size:12px; margin:10px 2px 0}
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      padding:2px 6px;
+      border-radius:8px;
+      color:var(--text);
+      font-size:12px;
+    }
+    .count{
+      color:var(--muted);
+      font-size:13px;
+    }
+    .launchCard{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+
+      margin:12px 0;
+      padding:16px 18px;
+
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+
+      background:linear-gradient(135deg,#1a2b55,#0f1e40);
+      text-decoration:none;
+      color:var(--text);
+
+      transition:.18s ease;
+    }
+
+    .launchCard:hover{
+      border-color:rgba(122,162,255,.6);
+      background:linear-gradient(135deg,#223a72,#12265a);
+      transform:translateY(-1px);
+    }
+
+    .launchLeft{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+
+    .launchTitle{
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .launchUrl{
+      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    .launchBtn{
+      flex:0 0 auto;
+      padding:8px 14px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.08);
+      font-size:12px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>洋基喵客鬆 2nd 冒險探索篇🌲🔍 ｜ 課程用文字（可一鍵複製）</h1>
+    <p class="sub">點開每一頁（P.6、P.7…）即可看到對應步驟；每段可複製內容都可直接按 <span class="kbd">Copy</span>。</p>
+
+    <div class="toolbar">
+      <div class="search" role="search">
+        <span aria-hidden="true">🔎</span>
+        <input id="q" type="search" placeholder="搜尋：頁碼、標題、關鍵字（例如：URI、Outlook、Teams、id）" />
+      </div>
+      <div class="pill">
+        <span>顯示：</span>
+        <span class="count" id="count">—</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="app">
+
+    <!-- P.6 -->
+    <details class="slide" data-search="P.6 1 進入到Copilot Studio copilotstudio microsoft">
+      <summary>
+        <span class="pageTag">P.6</span>
+        <div class="sumText">
+          <p class="title">1、進入到 Copilot Studio</p>
+          <p class="hint">開啟 Copilot Studio 網站</p>
+        </div>
+      </summary>
+      <div class="content">
+        <a class="launchCard"
+          href="https://copilotstudio.microsoft.com/"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="launchLeft">
+            <div class="launchTitle">開啟 Copilot Studio</div>
+            <div class="launchUrl">https://copilotstudio.microsoft.com/</div>
+          </div>
+
+          <div class="launchBtn">Open ↗</div>
+        </a>
+      </div>
+    </details>
+
+    <!-- P.7 -->
+    <details class="slide" data-search="P.7 2 輸入以下內容 個人核心助理 子agent outlook 郵件 行事曆 teams">
+      <summary>
+        <span class="pageTag">P.7</span>
+        <div class="sumText">
+          <p class="title">2、輸入以下內容</p>
+          <p class="hint">貼上指令（角色與範圍）</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="你是我的個人核心助理，主要任務負責管理3個子agent，包含outlook郵件助理、outlook行事曆助理、teams聊天助理，依照使用者的需求呼叫對應的助理來完成任務，除了這3個工作相關的內容外，一律回答不在任務範圍內，回答格式以逐條方式呈現">
+          <div class="copyTop">
+            <div class="label">可複製（指令）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>你是我的個人核心助理，主要任務負責管理3個子agent,包含outlook郵件助理、outlook行事曆助理、teams聊天助理，依照使用者的需求呼叫對應的助理來完成任務，除了這3個工作相關的內容外，一律回答不在任務範圍內，回答格式以逐條方式呈現</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.8 -->
+    <details class="slide" data-search="P.8 3 AI自動生成相關的內容 個人小助">
+      <summary>
+        <span class="pageTag">P.8</span>
+        <div class="sumText">
+          <p class="title">3、AI 自動生成相關的內容</p>
+          <p class="hint">重新命名</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="個人小助">
+          <div class="copyTop">
+            <div class="label">可複製（名稱）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>個人小助</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.11 -->
+    <details class="slide" data-search="P.11 4-2 設定子Agent的名字和描述 Teams聊天助理 主要整理Teams的聊天資訊">
+      <summary>
+        <span class="pageTag">P.11</span>
+        <div class="sumText">
+          <p class="title">4-2、設定子Agent的名字和描述</p>
+          <p class="hint">個人小助 > Agent > Teams聊天助理 > 詳細資訊</p>
+        </div>
+      </summary>
+      <div class="content">
+        <!-- 注意：同一頁不同段要獨立可複製 -->
+        <div class="copyBlock" data-copy="Teams聊天助理">
+          <div class="copyTop">
+            <div class="label">可複製（名字）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>Teams聊天助理</pre>
+        </div>
+
+        <div class="copyBlock" data-copy="主要整理Teams的聊天資訊">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>主要整理Teams的聊天資訊</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.14 -->
+    <details class="slide" data-search="P.14 4-5 修改名字和描述 列出最近50個聊天資訊 取得最近聊天紀錄 id 使用者姓名 時間 最近一則聊天紀錄">
+      <summary>
+        <span class="pageTag">P.14</span>
+        <div class="sumText">
+          <p class="title">4-5、修改名字和描述</p>
+          <p class="hint">個人小助 > Agent > Teams聊天助理 > 工具 > 列出最近50個聊天資訊 > 詳細資訊</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="列出最近50個聊天資訊">
+          <div class="copyTop">
+            <div class="label">可複製（名稱）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>列出最近50個聊天資訊</pre>
+        </div>
+        <div class="copyBlock" data-copy="取得最近聊天紀錄的資訊，取得id和使用者姓名、時間、姓名、最近一則聊天紀錄">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>取得最近聊天紀錄的資訊，取得id和使用者姓名、時間、姓名、最近一則聊天紀錄</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.15 -->
+    <details class="slide" data-search="P.15 4-6 URI graph microsoft chats oneOnOne select expand top 50">
+      <summary>
+        <span class="pageTag">P.15</span>
+        <div class="sumText">
+          <p class="title">4-6、URI（Graph API）</p>
+          <p class="hint">個人小助 > Agent > Teams聊天助理 > 工具 > 列出最近50個聊天資訊 > 輸入 > URI > 值</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="https://graph.microsoft.com/v1.0/me/chats?$filter=chatType eq 'oneOnOne'&$select=id,chatType,topic&$expand=members,lastMessagePreview&$top=50">
+          <div class="copyTop">
+            <div class="label">可複製（URI）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>https://graph.microsoft.com/v1.0/me/chats?$filter=chatType eq 'oneOnOne'&amp;$select=id,chatType,topic&amp;$expand=members,lastMessagePreview&amp;$top=50</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.18 -->
+    <details class="slide" data-search="P.18 4-9 修改名字和描述 搜尋指定user的聊天紀錄 透過id 抓最近50則 聊天訊息">
+      <summary>
+        <span class="pageTag">P.18</span>
+        <div class="sumText">
+          <p class="title">4-9、修改名字和描述</p>
+          <p class="hint">個人小助 > Agent > Teams聊天助理 > 工具 > 搜尋指定user的聊天紀錄 > 詳細資訊</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="搜尋指定user的聊天紀錄">
+          <div class="copyTop">
+            <div class="label">可複製（名稱）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>搜尋指定user的聊天紀錄</pre>
+        </div>
+        <div class="copyBlock" data-copy="透過列出聊天紀錄取得的id 來抓最近50則的聊天訊息">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>透過列出聊天紀錄取得的id 來抓最近50則的聊天訊息</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.19 -->
+    <details class="slide" data-search="P.19 4-10 URI 使用聊天id建立一個uri連結 範例 messages top 50 graph microsoft">
+      <summary>
+        <span class="pageTag">P.19</span>
+        <div class="sumText">
+          <p class="title">4-10、URI（Graph API）</p>
+          <p class="hint">個人小助 > Agent > Teams聊天助理 > 工具 > 搜尋指定user的聊天紀錄 > 輸入 > URI > 值(自訂) > 描述</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="使用聊天id建立一個uri連結，範例如下
+https://graph.microsoft.com/v1.0/me/chats/19:87333ce9-21d3-4713-9ee3-25505c47fa96_ec7ed9e1-a751-45df-876d-e20831812772@unq.gbl.spaces/messages?$top=50">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>使用聊天id建立一個uri連結，範例如下
+https://graph.microsoft.com/v1.0/me/chats/19:87333ce9-21d3-4713-9ee3-25505c47fa96_ec7ed9e1-a751-45df-876d-e20831812772@unq.gbl.spaces/messages?$top=50</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.21 -->
+    <details class="slide" data-search="P.21 4-12 測試一下 搜尋 我 跟 yangchisen powerappstw chat">
+      <summary>
+        <span class="pageTag">P.21</span>
+        <div class="sumText">
+          <p class="title">4-12、測試一下</p>
+          <p class="hint">個人小助 > 測試(畫面右邊欄位or畫面右上按鈕展開)</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="搜尋我跟yangchisen@powerappstw.com的聊天紀錄">
+          <div class="copyTop">
+            <div class="label">可複製（測試語句）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>搜尋我跟yangchisen@powerappstw.com的聊天紀錄</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.24 -->
+    <details class="slide" data-search="P.24 5-2 設定子Agent Outlook郵件助理 專門搜尋Outlook的郵件的資訊">
+      <summary>
+        <span class="pageTag">P.24</span>
+        <div class="sumText">
+          <p class="title">5-2、設定子 Agent 的名字和描述</p>
+          <p class="hint">個人小助 > Agent > Outlook郵件助理 > 詳細資訊</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="Outlook郵件助理">
+          <div class="copyTop">
+            <div class="label">可複製（名字）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>Outlook郵件助理</pre>
+        </div>
+        <div class="copyBlock" data-copy="專門搜尋Outlook的郵件的資訊">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>專門搜尋Outlook的郵件的資訊</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.27 -->
+    <details class="slide" data-search="P.27 5-4 修改名字和描述 搜尋郵件 依使用者描述 搜尋指定對象 日期範圍 整理回覆">
+      <summary>
+        <span class="pageTag">P.27</span>
+        <div class="sumText">
+          <p class="title">5-4、修改名字和描述</p>
+          <p class="hint">個人小助 > Agent > Outlook郵件助理 > 工具 > 搜尋郵件 > 詳細資訊</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="搜尋郵件">
+          <div class="copyTop">
+            <div class="label">可複製（名字）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>搜尋郵件</pre>
+        </div>
+        <div class="copyBlock" data-copy="依使用者的描述來搜尋指定對象、日期範圍的郵件後整理回覆">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>依使用者的描述來搜尋指定對象、日期範圍的郵件後整理回覆</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.28 -->
+    <details class="slide" data-search="P.28 5-5 URI graph microsoft messages search participants received select count top 1000">
+      <summary>
+        <span class="pageTag">P.28</span>
+        <div class="sumText">
+          <p class="title">5-5、URI（Graph API）</p>
+          <p class="hint">個人小助 > Agent > Outlook郵件助理 > 工具 > 搜尋郵件 > 輸入 > URI > 值(自訂) > 描述</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="依使用者的描述產生uri，範例如下
+https://graph.microsoft.com/v1.0/me/messages?$top=1000&$search=&quot;participants:service@powerappstw.com AND received:2026-01-14..2026-01-28&quot;&$select=sender,subject,webLink,receivedDateTime,toRecipients,ccRecipients,bccRecipients,BodyPreview&$count=true">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>依使用者的描述產生uri，範例如下
+https://graph.microsoft.com/v1.0/me/messages?$top=1000&$search="participants:service@powerappstw.com AND received:2026-01-14..2026-01-28"&$select=sender,subject,webLink,receivedDateTime,toRecipients,ccRecipients,bccRecipients,BodyPreview&$count=true</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.29 -->
+    <details class="slide" data-search="P.29 5-6 測試一下 yangchisen powerappstw 信件 往來">
+      <summary>
+        <span class="pageTag">P.29</span>
+        <div class="sumText">
+          <p class="title">5-6、測試一下</p>
+          <p class="hint">個人小助 > 測試(畫面右邊欄位or畫面右上按鈕展開)</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="yangchisen@powerappstw.com 的信件往來">
+          <div class="copyTop">
+            <div class="label">可複製（測試語句）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>yangchisen@powerappstw.com 的信件往來</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.32 -->
+    <details class="slide" data-search="P.32 6-2 設定子Agent Outlook行事曆助理 新增 修改 刪除 搜尋 outlook 行程">
+      <summary>
+        <span class="pageTag">P.32</span>
+        <div class="sumText">
+          <p class="title">6-2、設定子 Agent 的名字和描述</p>
+          <p class="hint">個人小助 > Agent > Outlook行事曆助理 > 詳細資訊</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="Outlook行事曆助理">
+          <div class="copyTop">
+            <div class="label">可複製（名字）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>Outlook行事曆助理</pre>
+        </div>
+        <div class="copyBlock" data-copy="新增、修改、刪除、搜尋outlook行程">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>新增、修改、刪除、搜尋outlook行程</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.34 -->
+    <details class="slide" data-search="P.34 6-4 修改名字和描述 搜尋行事曆 指定時間 篩選 主旨 召集人 地點">
+      <summary>
+        <span class="pageTag">P.34</span>
+        <div class="sumText">
+          <p class="title">6-4、修改名字和描述</p>
+          <p class="hint">個人小助 > Agent > Outlook行事曆助理 > 工具 > 搜尋行事曆 > 詳細資訊</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="搜尋行事曆">
+          <div class="copyTop">
+            <div class="label">可複製（名稱）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>搜尋行事曆</pre>
+        </div>
+        <div class="copyBlock" data-copy="先依使用者需求搜尋指定時間的行程，如需篩選再透過主旨、召集人、地點等資訊蒐集相關行程資訊">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>先依使用者需求搜尋指定時間的行程，如需篩選再透過主旨、召集人、地點等資訊蒐集相關行程資訊</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.35 -->
+    <details class="slide" data-search="P.35 6-5 URI 日期未指定 最近2週 UTC -8 小時 graph microsoft events filter select top 1000">
+      <summary>
+        <span class="pageTag">P.35</span>
+        <div class="sumText">
+          <p class="title">6-5、URI（Graph API）</p>
+          <p class="hint">個人小助 > Agent > Outlook行事曆助理 > 工具 > 搜尋行事曆 > 輸入 > URI > 值(自訂) > 描述</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="依使用者的需求建立uri，如日期未指定就是最近2週，如果涉及時間 上午 下午 晚上記得要-8小時才改為utc時間，範例如下
+https://graph.microsoft.com/v1.0/me/events?$filter=start/dateTime ge '2026-02-23T00:00:00Z' and end/dateTime le '2026-03-01T23:59:59Z'&amp;$select=id,subject,start,end,location,organizer,attendees,bodyPreview,webLink&amp;$top=1000&amp;$count=true">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>依使用者的需求建立uri，如日期未指定就是最近2週，如果涉及時間 上午 下午 晚上記得要-8小時才改為utc時間，範例如下
+https://graph.microsoft.com/v1.0/me/events?$filter=start/dateTime ge '2026-02-23T00:00:00Z' and end/dateTime le '2026-03-01T23:59:59Z'&amp;$select=id,subject,start,end,location,organizer,attendees,bodyPreview,webLink&amp;$top=1000&amp;$count=true</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.36 -->
+    <details class="slide" data-search="P.36 6-6 測試一下 我下星期有什麼行程">
+      <summary>
+        <span class="pageTag">P.36</span>
+        <div class="sumText">
+          <p class="title">6-6、測試一下</p>
+          <p class="hint">個人小助 > 測試(畫面右邊欄位or畫面右上按鈕展開)</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="我下星期有什麼行程">
+          <div class="copyTop">
+            <div class="label">可複製（測試語句）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>我下星期有什麼行程</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.38 -->
+    <details class="slide" data-search="P.38 6-8 修改名字和描述 刪除事件 活動 此作業會刪除行事曆中的活動">
+      <summary>
+        <span class="pageTag">P.38</span>
+        <div class="sumText">
+          <p class="title">6-8、修改名字和描述</p>
+          <p class="hint">個人小助 > Agent > Outlook行事曆助理 > 工具 > 刪除事件/活動 > 詳細資訊</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="刪除事件/活動">
+          <div class="copyTop">
+            <div class="label">可複製（名稱）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>刪除事件/活動</pre>
+        </div>
+        <div class="copyBlock" data-copy="此作業會刪除行事曆中的活動">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>此作業會刪除行事曆中的活動</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.39 -->
+    <details class="slide" data-search="P.39 6-9 Id id由搜尋行事曆 工具 cs新增活動 cs修改活動 AAMkADRi">
+      <summary>
+        <span class="pageTag">P.39</span>
+        <div class="sumText">
+          <p class="title">6-9、Id</p>
+          <p class="hint">個人小助 > Agent > Outlook行事曆助理 > 工具 > 刪除事件/活動 > 輸入 > Id > 值(自訂) > 描述</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="id由搜尋行事曆工具、 cs建立行事曆活動、 cs更新行事曆活動而來，範例如下
+AAMkADRiMzZhZWQ4LThmNmEtNDRlNi1hZjM0LWNhMDYwMDdjNjY0YgBGAAAAAABF4xcq-qPySrJX1FZr0f_IBwCAnLRpt4VzRYz_R9VCs7CEAAAAAAENAACAnLRpt4VzRYz_R9VCs7CEAAQIfScjAAA=">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>id由搜尋行事曆工具、 cs建立行事曆活動、 cs更新行事曆活動而來，範例如下
+AAMkADRiMzZhZWQ4LThmNmEtNDRlNi1hZjM0LWNhMDYwMDdjNjY0YgBGAAAAAABF4xcq-qPySrJX1FZr0f_IBwCAnLRpt4VzRYz_R9VCs7CEAAAAAAENAACAnLRpt4VzRYz_R9VCs7CEAAQIfScjAAA=</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.41 -->
+    <details class="slide" data-search="P.41 6-11 在Agent流程 新增3個輸入 開始時間 結束時間 Subject">
+      <summary>
+        <span class="pageTag">P.41</span>
+        <div class="sumText">
+          <p class="title">6-11、在 Agent 流程 新增 3 個輸入</p>
+          <p class="hint">個人小助 > 工具 > 新增工具 > Agent 流程 > 當 Agent 呼叫流程時 > 新增輸入 > 文字</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="開始時間">
+          <div class="copyTop">
+            <div class="label">可複製（文字）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>開始時間</pre>
+        </div>
+        <div class="copyBlock" data-copy="結束時間">
+          <div class="copyTop">
+            <div class="label">可複製（文字）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>結束時間</pre>
+        </div>
+        <div class="copyBlock" data-copy="Subject">
+          <div class="copyTop">
+            <div class="label">可複製（文字）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>Subject</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.42 -->
+    <details class="slide" data-search="P.42 6-12 新增動作 建立事件 v4 建立事件">
+      <summary>
+        <span class="pageTag">P.42</span>
+        <div class="sumText">
+          <p class="title">6-12、新增動作 - 建立事件 (v4)</p>
+          <p class="hint">個人小助 > 工具 > 新增工具 > Agent 流程 > 當 Agent 呼叫流程時 > 新增動作</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="建立事件">
+          <div class="copyTop">
+            <div class="label">可複製（搜尋文字）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>建立事件</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.46 -->
+    <details class="slide" data-search="P.46 6-16 改一下名稱和描述 cs建立行事曆活動">
+      <summary>
+        <span class="pageTag">P.46</span>
+        <div class="sumText">
+          <p class="title">6-16、改一下名稱和描述</p>
+          <p class="hint">個人小助 > Agent > Outlook行事曆助理 > 工具 > 新增 > 流程 > 未命名 > 新增和設定 > 詳細資訊</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="cs建立行事曆活動">
+          <div class="copyTop">
+            <div class="label">可複製（名稱）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>cs建立行事曆活動</pre>
+        </div>
+        <div class="copyBlock" data-copy="cs建立行事曆活動">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>cs建立行事曆活動</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.47 -->
+    <details class="slide" data-search="P.47 6-17 3個參數 AI動態填入 自訂 開始時間 結束時間 預設 +1小時 2026-03-02T10:00:00">
+      <summary>
+        <span class="pageTag">P.47</span>
+        <div class="sumText">
+          <p class="title">6-17、3 個參數都是使用 AI 動態填入，值則是自訂</p>
+          <p class="hint">個人小助 > Agent > Outlook行事曆助理 > 工具 > cs建立行事曆活動 > 輸入 > 開始時間/結束時間/Subject > 值(自訂) > 描述</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="依使用者的需求建立，範例如下
+2026-03-02T10:00:00">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>依使用者的需求建立，範例如下
+2026-03-02T10:00:00</pre>
+        </div>
+
+        <div class="copyBlock" data-copy="依使用者的需求建立，預設為開始時間+1小時，範例如下
+2026-03-02T11:00:00">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>依使用者的需求建立，預設為開始時間+1小時，範例如下
+2026-03-02T11:00:00</pre>
+        </div>
+
+        <div class="copyBlock" data-copy="依使用者的需求建立">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>依使用者的需求建立</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.48 -->
+    <details class="slide" data-search="P.48 6-18 測試建立一個行程 下週一 中午11點 吃早午餐">
+      <summary>
+        <span class="pageTag">P.48</span>
+        <div class="sumText">
+          <p class="title">6-18、測試建立一個行程</p>
+          <p class="hint">個人小助 > 測試(畫面右邊欄位or畫面右上按鈕展開)</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="下週一 中午11點 吃早午餐">
+          <div class="copyTop">
+            <div class="label">可複製（測試語句）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>下週一 中午11點 吃早午餐</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.50 -->
+    <details class="slide" data-search="P.50 6-20 在Agent流程 新增3個輸入 事件id 主旨 開始時間 結束時間">
+      <summary>
+        <span class="pageTag">P.50</span>
+        <div class="sumText">
+          <p class="title">6-20、在 Agent 流程新增４個輸入</p>
+          <p class="hint">個人小助 > 工具 > 新增工具 > Agent 流程 > 當 Agent 呼叫流程時 > 新增輸入 > 文字</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="事件id">
+          <div class="copyTop">
+            <div class="label">可複製（文字）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>事件id</pre>
+        </div>
+        <div class="copyBlock" data-copy="主旨">
+          <div class="copyTop">
+            <div class="label">可複製（文字）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>主旨</pre>
+        </div>
+        <div class="copyBlock" data-copy="開始時間">
+          <div class="copyTop">
+            <div class="label">可複製（文字）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>開始時間</pre>
+        </div>
+        <div class="copyBlock" data-copy="結束時間">
+          <div class="copyTop">
+            <div class="label">可複製（文字）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>結束時間</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.51 -->
+    <details class="slide" data-search="P.51 6-21 新增動作 更新事件 v4 更新事件">
+      <summary>
+        <span class="pageTag">P.51</span>
+        <div class="sumText">
+          <p class="title">6-21、新增動作 - 更新事件 (v4)</p>
+          <p class="hint">個人小助 > 工具 > 新增工具 > Agent 流程 > 當 Agent 呼叫流程時 > 新增動作</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="更新事件">
+          <div class="copyTop">
+            <div class="label">可複製（搜尋文字）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>更新事件</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.55 -->
+    <details class="slide" data-search="P.55 6-25 改一下名稱和描述 cs刪除事件 活動">
+      <summary>
+        <span class="pageTag">P.55</span>
+        <div class="sumText">
+          <p class="title">6-25、改一下名稱和描述</p>
+          <p class="hint">個人小助 > Agent > Outlook行事曆助理 > 工具 > 新增 > 流程 > 未命名 > 新增和設定 > 詳細資訊</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="cs更新行事曆活動">
+          <div class="copyTop">
+            <div class="label">可複製（名字）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>cs更新行事曆活動</pre>
+        </div>
+        <div class="copyBlock" data-copy="cs更新行事曆活動">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>cs更新行事曆活動</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.56 -->
+    <details class="slide" data-search="P.56 6-26 4個參數 AI動態填入 事件id 主旨 開始時間 結束時間 AAMkADRi 2026-03-02T10:00:00 2026-03-02T11:00:00">
+      <summary>
+        <span class="pageTag">P.56</span>
+        <div class="sumText">
+          <p class="title">6-26、４個參數都是使用 AI 動態填入，值則是自訂</p>
+          <p class="hint">個人小助 > Agent > Outlook行事曆助理 > 工具 > cs更新行事曆活動 > 輸入 > 事件id/主旨/開始時間/結束時間 > 值(自訂) > 描述</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="事件id從搜尋行事曆工具 或 cs建立行事曆活動 的id來的，範例如下
+AAMkADRiMzZhZWQ4LThmNmEtNDRlNi1hZjM0LWNhMDYwMDdjNjY0YgBGAAAAAABF4xcq-qPySrJX1FZr0f_IBwCAnLRpt4VzRYz_R9VCs7CEAAAAAAENAACAnLRpt4VzRYz_R9VCs7CEAAQIfScjAAA=">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>事件id從搜尋行事曆工具 或 cs建立行事曆活動 的id來的，範例如下
+AAMkADRiMzZhZWQ4LThmNmEtNDRlNi1hZjM0LWNhMDYwMDdjNjY0YgBGAAAAAABF4xcq-qPySrJX1FZr0f_IBwCAnLRpt4VzRYz_R9VCs7CEAAAAAAENAACAnLRpt4VzRYz_R9VCs7CEAAQIfScjAAA=</pre>
+        </div>
+
+        <div class="copyBlock" data-copy="依使用者需求而定，有可能維持原來的主旨">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>依使用者需求而定，有可能維持原來的主旨</pre>
+        </div>
+
+        <div class="copyBlock" data-copy="依使用者的需求而定，主要由搜尋行事曆工具和 cs建立行事曆活動 而來，有可能維持原來的開始時間，範例如下
+2026-03-02T10:00:00">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>依使用者的需求而定，主要由搜尋行事曆工具和 cs建立行事曆活動 而來，有可能維持原來的開始時間，範例如下
+2026-03-02T10:00:00</pre>
+        </div>
+
+        <div class="copyBlock" data-copy="依使用者的需求而定，主要由搜尋行事曆工具和 cs建立行事曆活動 而來，有可能維持原來的結束時間，範例如下
+2026-03-02T11:00:00">
+          <div class="copyTop">
+            <div class="label">可複製（描述）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>依使用者的需求而定，主要由搜尋行事曆工具和 cs建立行事曆活動 而來，有可能維持原來的結束時間，範例如下
+2026-03-02T11:00:00</pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- P.57 -->
+    <details class="slide" data-search="P.57 6-27 測試一下 吃早午餐 幫我改到12點">
+      <summary>
+        <span class="pageTag">P.57</span>
+        <div class="sumText">
+          <p class="title">6-27、測試一下</p>
+          <p class="hint">個人小助 > 測試(畫面右邊欄位or畫面右上按鈕展開)</p>
+        </div>
+      </summary>
+      <div class="content">
+        <div class="copyBlock" data-copy="吃早午餐 幫我改到12點">
+          <div class="copyTop">
+            <div class="label">可複製（測試語句）</div>
+            <button class="copyBtn" type="button">Copy</button>
+          </div>
+          <pre>吃早午餐 幫我改到12點</pre>
+        </div>
+      </div>
+    </details>
+
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const toast = document.getElementById('toast');
+
+    function showToast(msg, ok=true){
+      toast.textContent = msg;
+      toast.style.borderColor = ok ? 'rgba(68,209,157,.35)' : 'rgba(255,211,106,.35)';
+      toast.classList.add('show');
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(()=>toast.classList.remove('show'), 1300);
+    }
+
+    async function copyText(text){
+      // Prefer Clipboard API
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      ta.style.top = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      if (!ok) throw new Error('copy failed');
+    }
+
+    // Wire copy buttons
+    document.querySelectorAll('.copyBlock').forEach(block=>{
+      const btn = block.querySelector('.copyBtn');
+      btn.addEventListener('click', async ()=>{
+        const text = block.getAttribute('data-copy') || '';
+        try{
+          await copyText(text);
+          btn.textContent = 'Copied ✓';
+          btn.style.borderColor = 'rgba(68,209,157,.45)';
+          showToast('已複製到剪貼簿 ✓', true);
+          setTimeout(()=>{
+            btn.textContent = 'Copy';
+            btn.style.borderColor = 'rgba(255,255,255,.18)';
+          }, 900);
+        }catch(e){
+          showToast('複製失敗：請手動選取複製', false);
+        }
+      });
+    });
+
+    // Search / filter
+    const q = document.getElementById('q');
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const count = document.getElementById('count');
+
+    function updateCount(n){ count.textContent = `${n} / ${slides.length}`; }
+
+    function applyFilter(){
+      const term = (q.value || '').trim().toLowerCase();
+      let visible = 0;
+      slides.forEach(s=>{
+        const hay = (s.getAttribute('data-search') || '').toLowerCase()
+          + ' ' + (s.innerText || '').toLowerCase();
+        const ok = !term || hay.includes(term);
+        s.style.display = ok ? '' : 'none';
+        if (ok) visible++;
+      });
+      updateCount(visible);
+    }
+    q.addEventListener('input', applyFilter);
+    applyFilter();
+  </script>
+</body>
+</html>
